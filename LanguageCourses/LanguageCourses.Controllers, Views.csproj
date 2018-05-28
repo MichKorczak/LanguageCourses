@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LanguageCourses.Date\LanguageCourses.Date.csproj" />
+    <ProjectReference Include="..\LanguageCourses.Services\LanguageCourses.Services.csproj" />
   </ItemGroup>
 
 </Project>

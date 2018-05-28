@@ -13,5 +13,6 @@ namespace LanguageCourses.Date.DataAccessLayer
         public DbSet<User> Users { get; set; }
         public DbSet<CourseUser> CourseUsers { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<TokenModel> TokenModels { get; set; }
     }
 }
