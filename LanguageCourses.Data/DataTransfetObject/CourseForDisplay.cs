@@ -1,19 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LanguageCourses.Data.DataTransfetObject
 {
     public class CourseForDisplay
     {
-        [Required] public string Email { get; set; }
+        public string Language { get; set; }
 
-        [Required] public string Login { get; set; }
+        public DateTime StartDate { get; set; }
 
-        [Required] public string Password { get; set; }
+        public int CourseLevel { get; set; }
 
-        [Required] public string FirstName { get; set; }
+        public int NumberOfSeats { get; set; }
 
-        [Required] public string LastName { get; set; }
+        public string FirstNameTeacher { get; set; }
 
-        [Required] public DataType DateOfBirthday { get; set; }
+        public string LastNameTeacher { get; set; }
     }
 }

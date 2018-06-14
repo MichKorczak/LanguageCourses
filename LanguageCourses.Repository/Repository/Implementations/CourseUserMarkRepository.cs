@@ -1,42 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
+using LanguageCourses.Data.DataAccessLayer;
 using LanguageCourses.Data.Model;
 using LanguageCourses.Repository.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace LanguageCourses.Repository.Repository.Implementations
 {
     public class CourseUserMarkRepository : ICourseUserMarkRepository
     {
-        public Task<List<CourseUserMark>> GetCourseUserMarkListAsync()
+        private readonly ApplicationDbContext _applicationDbContext;
+
+        public CourseUserMarkRepository(ApplicationDbContext applicationDbContext)
         {
-            throw new NotImplementedException();
+            _applicationDbContext = applicationDbContext;
         }
 
-        public Task<List<CourseUserMark>> GetCouseUserMarkByCourseUserListAsync(Guid courseUserId)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<CourseUserMark>> GetCourseUserMarkListAsync() =>
+            await _applicationDbContext.CourseUserMarks.ToListAsync();
 
-        public Task<CourseUserMark> GetCourseUserMarkById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<List<CourseUserMark>> GetCouseUserMarkByCourseUserListAsync(Guid courseUserId) =>
+            await _applicationDbContext.CourseUserMarks.Where(t => t.CourseUserId == courseUserId).ToListAsync();
 
-        public Task AddCouseUserMarkAsync()
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<CourseUserMark> GetCourseUserMarkById(Guid id) =>
+            await _applicationDbContext.CourseUserMarks.FirstOrDefaultAsync(t => t.Id == id);
 
-        public Task<int> DeleteCourseAsync(CourseUserMark courseUserMark)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task AddCouseUserMarkAsync(CourseUserMark courseUserMark) => 
+            await _applicationDbContext.CourseUserMarks.AddAsync(courseUserMark);
 
-        public Task<bool> SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
+        public void DeleteCourseAsync(CourseUserMark courseUserMark) =>
+            _applicationDbContext.CourseUserMarks.Remove(courseUserMark);
+
+        public async Task<bool> SaveChanges() => await _applicationDbContext.SaveChangesAsync() >= 0;
     }
 }

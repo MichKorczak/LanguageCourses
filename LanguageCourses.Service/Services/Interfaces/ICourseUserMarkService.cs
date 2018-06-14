@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using LanguageCourses.Data.DataTransfetObject;
 using LanguageCourses.Data.Model;
 
 namespace LanguageCourses.Service.Services.Interfaces
 {
     public interface ICourseUserMarkService
     {
-        Task<List<CourseUserMark>> GetCourseUserMarkListAsync();
+        Task<List<CourseUserMarkForDisplay>> GetCourseUserMarkListAsync();
 
-        Task<List<CourseUserMark>> GetCouseUserMarkByCourseUserListAsync(Guid courseUserId);
+        Task<List<CourseUserMarkForDisplay>> GetCouseUserMarkByCourseUserListAsync(Guid courseUserId);
 
-        Task<CourseUserMark> GetCourseUserMarkById(Guid id);
+        Task<CourseUserMarkForDisplay> GetCourseUserMarkById(Guid id);
             
-        Task AddCouseUserMarkAsync();
+        Task<bool> AddCouseUserMarkAsync(CourseUserMarkForCreation courseUserMarkForCreation);
 
-        Task<int> DeleteCourseAsync(CourseUserMark courseUserMark);
-
-        Task<bool> SaveChanges();
+        Task<bool> DeleteCourseUserMarkAsync(Guid courseUserMarkId);
     }
 }

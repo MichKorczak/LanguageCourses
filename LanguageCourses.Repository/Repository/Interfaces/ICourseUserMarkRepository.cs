@@ -14,9 +14,9 @@ namespace LanguageCourses.Repository.Repository.Interfaces
 
         Task<CourseUserMark> GetCourseUserMarkById(Guid id);
 
-        Task AddCouseUserMarkAsync();
+        Task AddCouseUserMarkAsync(CourseUserMark courseUserMark);
 
-        Task<int> DeleteCourseAsync(CourseUserMark courseUserMark);
+        void DeleteCourseAsync(CourseUserMark courseUserMark);
 
         Task<bool> SaveChanges();
     }

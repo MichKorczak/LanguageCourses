@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using LanguageCourses.Data.DataTransfetObject;
@@ -30,7 +28,7 @@ namespace LanguageCourses.Service.Services.Implementations
 
         public async Task<CourseForDisplay> GetCourseById(Guid courseId)
         {
-            var course = _mapper.Map<CourseForDisplay >(await _courseRepository.GetCourseById(courseId));
+            var course = _mapper.Map<CourseForDisplay>(await _courseRepository.GetCourseById(courseId));
             return course;
         }
 
