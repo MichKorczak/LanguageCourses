@@ -12,7 +12,7 @@ namespace LanguageCourses.Data.DataAccessLayer
 
         public DbSet<User> Users { get; set; }
         public DbSet<CourseUser> CourseUsers { get; set; }
-        public DbSet<CourseUserMark> CourseUserMarks { get; set; }
+        public DbSet<Mark> Marks { get; set; }
         public DbSet<Course> Courses { get; set; }
     }
 }

@@ -1,7 +1,9 @@
 ﻿namespace LanguageCourses.Data.DataTransfetObject
 {
-    public class CourseUserMarkForDisplay
+    public class MarkForDisplay
     {
         public decimal Mark { get; set; }
+
+        public string Description { get; set; }
     }
 }

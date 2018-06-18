@@ -9,7 +9,7 @@ namespace LanguageCourses.Data.Model
     {
         [Key] public Guid Id { get; set; }
 
-        public virtual ICollection<CourseUserMark> CourseUsersMarks { get; set; }
+        public virtual ICollection<Mark> CourseUsersMarks { get; set; }
 
         [ForeignKey("Course")] public Guid CourseId { get; set; }
 

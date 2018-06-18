@@ -1,15 +1,13 @@
-﻿using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using LanguageCourses.Data.DataAccessLayer;
-using LanguageCourses.Services.Services.Implementations;
+using LanguageCourses.Service.Services.Implementations;
+using LanguageCourses.Service.Services.Interfaces;
 using LanguageCourses.Services.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace LanguageCourses.MVC
 {
@@ -28,28 +26,11 @@ namespace LanguageCourses.MVC
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper();
-            services.AddTransient<ITokenService, TokenService>();
+            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<ICourseService, CourseService>();
+            services.AddTransient<ICourseUserService, CourseUserService>();
+            services.AddTransient<IMarkService, MarkService>();
 
-            services.AddAuthentication(cfg =>
-            {
-                cfg.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                cfg.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(o =>
-            {
-                o.RequireHttpsMetadata = false;
-                o.SaveToken = true;
-                o.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidAudience = Configuration["Tokens:Issuer"],
-                    ValidIssuer = Configuration["Tokens:Issuer"],
-                    IssuerSigningKey =
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Tokens:Key"]))
-                };
-            });
             services.AddSingleton(Configuration);
             services.AddMvc();
         }

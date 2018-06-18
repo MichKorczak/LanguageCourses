@@ -1,0 +1,40 @@
+﻿@model LanguageCourses.MVC.Controllers.CourseController
+
+@{
+    ViewData["Title"] = "AllCourse";
+}
+
+<h2>AllCourse</h2>
+
+<p>
+    <a asp-action="AllCourse">Show all course</a>
+</p>
+
+<form asp-controller="Course" asp-action="AllCourse" method="get">
+    <p>
+        Title: <input type="text" name="SearchString">
+        <input type="submit" value="Filter"/>
+    </p>
+</form>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.courseList)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movies[0].Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movies[0].Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.movies[0].Rating)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+</table>

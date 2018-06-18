@@ -6,12 +6,14 @@ using System.Text;
 
 namespace LanguageCourses.Data.Model
 {
-    public class CourseUserMark
+    public class Mark
     {
         [Key] public Guid Id { get; set; }
 
         [ForeignKey("CourseUser")] public Guid CourseUserId { get; set; }
 
-        public decimal Mark { get; set; }
+        public decimal UserMark { get; set; }
+
+        public string Description { get; set; }
     }
 }
