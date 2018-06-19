@@ -21,104 +21,104 @@ namespace LanguageCourses.Data.Migrations
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("LanguageCourses.Data.Model.Course", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<int>("CourseLevel");
+                b.Property<int>("CourseLevel");
 
-                    b.Property<string>("FirstNameTeacher");
+                b.Property<string>("FirstNameTeacher");
 
-                    b.Property<string>("Language");
+                b.Property<string>("Language");
 
-                    b.Property<string>("LastNameTeacher");
+                b.Property<string>("LastNameTeacher");
 
-                    b.Property<int>("NumberOfSeats");
+                b.Property<int>("NumberOfSeats");
 
-                    b.Property<DateTime>("StartDate");
+                b.Property<DateTime>("StartDate");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Courses");
-                });
+                b.ToTable("Courses");
+            });
 
             modelBuilder.Entity("LanguageCourses.Data.Model.CourseUser", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("CourseId");
+                b.Property<Guid>("CourseId");
 
-                    b.Property<Guid>("UserId");
+                b.Property<Guid>("UserId");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseId");
+                b.HasIndex("CourseId");
 
-                    b.HasIndex("UserId");
+                b.HasIndex("UserId");
 
-                    b.ToTable("CourseUsers");
-                });
+                b.ToTable("CourseUsers");
+            });
 
             modelBuilder.Entity("LanguageCourses.Data.Model.CourseUserMark", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("CourseUserId");
+                b.Property<Guid?>("CourseUserId");
 
-                    b.Property<decimal>("Mark");
+                b.Property<decimal>("Mark");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("CourseUserId");
+                b.HasIndex("CourseUserId");
 
-                    b.ToTable("CourseUserMarks");
-                });
+                b.ToTable("CourseUserMarks");
+            });
 
             modelBuilder.Entity("LanguageCourses.Data.Model.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+            {
+                b.Property<Guid>("Id")
+                    .ValueGeneratedOnAdd();
 
-                    b.Property<int>("DateOfBirthday");
+                b.Property<int>("DateOfBirthday");
 
-                    b.Property<string>("Email");
+                b.Property<string>("Email");
 
-                    b.Property<string>("FirstName");
+                b.Property<string>("FirstName");
 
-                    b.Property<string>("LastName");
+                b.Property<string>("LastName");
 
-                    b.Property<string>("Login");
+                b.Property<string>("Login");
 
-                    b.Property<string>("Password");
+                b.Property<string>("Password");
 
-                    b.Property<byte[]>("Salt");
+                b.Property<byte[]>("Salt");
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.ToTable("Users");
-                });
+                b.ToTable("Users");
+            });
 
             modelBuilder.Entity("LanguageCourses.Data.Model.CourseUser", b =>
-                {
-                    b.HasOne("LanguageCourses.Data.Model.Course")
-                        .WithMany("CourseUsers")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
+            {
+                b.HasOne("LanguageCourses.Data.Model.Course")
+                    .WithMany("CourseUsers")
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("LanguageCourses.Data.Model.User")
-                        .WithMany("CourseUsers")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
+                b.HasOne("LanguageCourses.Data.Model.User")
+                    .WithMany("CourseUsers")
+                    .HasForeignKey("UserId")
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
 
             modelBuilder.Entity("LanguageCourses.Data.Model.CourseUserMark", b =>
-                {
-                    b.HasOne("LanguageCourses.Data.Model.CourseUser")
-                        .WithMany("CourseUsersMarks")
-                        .HasForeignKey("CourseUserId");
-                });
+            {
+                b.HasOne("LanguageCourses.Data.Model.CourseUser")
+                    .WithMany("CourseUsersMarks")
+                    .HasForeignKey("CourseUserId");
+            });
 #pragma warning restore 612, 618
         }
     }

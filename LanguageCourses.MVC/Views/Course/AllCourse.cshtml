@@ -1,5 +1,5 @@
-﻿@model LanguageCourses.MVC.Controllers.CourseController
-
+﻿@using LanguageCourses.Data.DataTransfetObject
+@model IEnumerable<CourseForDisplay>
 @{
     ViewData["Title"] = "AllCourse";
 }
@@ -19,22 +19,27 @@
 <table class="table">
     <thead>
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.courseList)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movies[0].Genre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movies[0].Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.movies[0].Rating)
-        </th>
-        <th></th>
+        <th>Language</th>
+        <th>CourseLevel</th>
+        <th>NumberOfSeats</th>
+        <th>StartDate</th>
+        <th>TeacherName</th>
+        <th>Edit course</th>
+        <th>Delete course</th>
     </tr>
     </thead>
+    <tbody>
+        @foreach (var courseList in Model)
+        {
+        <tr>
+            <td>@courseList.Language</td>
+            <td>@courseList.CourseLevel</td>
+            <td>@courseList.NumberOfSeats</td>
+            <td>@courseList.StartDate</td>
+            <td>@courseList.TeacherName</td>
+            <td><a class="btn btn-info" asp-area="" asp-controller="Course" asp-action="Update" asp-route="@courseList.IdCourse">Edit</a>/td>
+            <td><a class="btn btn-danger" asp-area="" asp-controller="Course" asp-action="Delete" asp-route="@courseList.IdCourse">Edit</a>/td>
+        </tr>
+        }
+    </tbody>
 </table>

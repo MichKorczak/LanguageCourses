@@ -12,14 +12,12 @@ namespace LanguageCourses.Service.Services.Implementations
     {
         private readonly IUserRepository _userRepository;
         private readonly IHashService _hashService;
-        private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
 
-        public UserService(IUserRepository userRepository, IHashService hashService, ITokenService tokenService, IMapper mapper)
+        public UserService(IUserRepository userRepository, IHashService hashService, IMapper mapper)
         {
             _userRepository = userRepository;
             _hashService = hashService;
-            _tokenService = tokenService;
             _mapper = mapper;
         }
 
@@ -37,15 +35,15 @@ namespace LanguageCourses.Service.Services.Implementations
             return await _userRepository.SaveChanges();
         }
 
-        public async Task<TokenModel> GetToken(UserForLogin userForLogin)
+        public async Task<bool> GetToken(UserForLogin userForLogin)
         {
             var user = await _userRepository.GetUserByName(userForLogin.Login);
             if (user == null)
-                return null;
+                return false;
             userForLogin.Password = _hashService.HashPassword(userForLogin.Password, user.Salt);
             if (user.Password.Equals(userForLogin.Password))
-                return _tokenService.CreateToken(user);
-            return null;
+                return true;
+            return false;
         }
     }
 }

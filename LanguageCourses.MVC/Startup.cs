@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using LanguageCourses.Data.DataAccessLayer;
+using LanguageCourses.Repository.Repository.Implementations;
+using LanguageCourses.Repository.Repository.Interfaces;
 using LanguageCourses.Service.Services.Implementations;
 using LanguageCourses.Service.Services.Interfaces;
 using LanguageCourses.Services.Services.Interfaces;
@@ -26,6 +28,7 @@ namespace LanguageCourses.MVC
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAutoMapper();
+            services.AddTransient<ICourseRepository, CourseRepository>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ICourseService, CourseService>();
             services.AddTransient<ICourseUserService, CourseUserService>();

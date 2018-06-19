@@ -8,6 +8,6 @@ namespace LanguageCourses.Services.Services.Interfaces
     {
         Task<bool> AddUserAsync(User user);
 
-        Task<TokenModel> GetToken(UserForLogin forLogin);
+        Task<bool> GetToken(UserForLogin forLogin);
     }
 }

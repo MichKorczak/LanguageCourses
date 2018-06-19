@@ -11,6 +11,8 @@ namespace LanguageCourses.Data.Model
 
         public virtual ICollection<Mark> CourseUsersMarks { get; set; }
 
+        public decimal AverageDecimal { get; set; }
+
         [ForeignKey("Course")] public Guid CourseId { get; set; }
 
         [ForeignKey("User")] public Guid UserId { get; set; }
